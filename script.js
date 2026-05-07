@@ -1,66 +1,128 @@
-// Full Ecommerce + Admin + Single Product + Cart + Auth
-AOS.init({ duration: 800, once: true });
+// DATABASE - প্রতিটি ক্যাটাগরিতে আলাদা পণ্য
 let products = [
-    { id: 1, name: "Xiaomi Note 13 Pro", price: 34999, oldPrice: 49999, image: "https://images.pexels.com/photos/4042800/pexels-photo-4042800.jpeg", desc: "৫জি, ১০৮এমপি ক্যামেরা, অ্যামোলেড ডিসপ্লে", category: "mobiles" },
-    { id: 2, name: "Noise Cancelling Headphones", price: 8999, oldPrice: 14999, image: "https://images.pexels.com/photos/3394650/pexels-photo-3394650.jpeg", desc: "হাই-রেস অডিও, ৪০ ঘণ্টা ব্যাটারি", category: "gadgets" },
-    { id: 3, name: "Premium Slim Fit Shirt", price: 2999, oldPrice: 5999, image: "https://images.pexels.com/photos/7679742/pexels-photo-7679742.jpeg", desc: "কটন লিনেন, অরিজিনাল", category: "fashion" },
-    { id: 4, name: "Gaming Laptop RTX 4060", price: 129999, oldPrice: 159999, image: "https://images.pexels.com/photos/18105/pexels-photo.jpg", desc: "১৬জিবি র্যাম, ১টিবি এসএসডি", category: "laptops" },
-    { id: 5, name: "Smart Watch Ultra", price: 11999, oldPrice: 19999, image: "https://images.pexels.com/photos/437037/pexels-photo-437037.jpeg", desc: "ব্লুটুথ কল, ব্লাড অক্সিজেন", category: "gadgets" },
-    { id: 6, name: "Leather Sneakers", price: 6999, oldPrice: 11999, image: "https://images.pexels.com/photos/2529148/pexels-photo-2529148.jpeg", desc: "প্রিমিয়াম লেদার", category: "footwear" },
+    { id: 1, name: "iPhone 15 Pro Max", price: 159999, oldPrice: 179999, image: "https://images.pexels.com/photos/788946/pexels-photo-788946.jpeg?auto=compress&w=400", desc: "A17 চিপ, 48MP ক্যামেরা, টাইটানিয়াম বডি", category: "mobiles" },
+    { id: 2, name: "Samsung Galaxy S24 Ultra", price: 144999, oldPrice: 164999, image: "https://images.pexels.com/photos/4042800/pexels-photo-4042800.jpeg?auto=compress&w=400", desc: "AI স্পেস, 200MP ক্যামেরা", category: "mobiles" },
+    { id: 3, name: "OnePlus 12", price: 74999, oldPrice: 89999, image: "https://images.pexels.com/photos/1450739/pexels-photo-1450739.jpeg?auto=compress&w=400", desc: "Snapdragon 8 Gen 3", category: "mobiles" },
+    { id: 4, name: "Google Pixel 8 Pro", price: 119999, oldPrice: 134999, image: "https://images.pexels.com/photos/4042800/pexels-photo-4042800.jpeg?auto=compress&w=400", desc: "বেস্ট ক্যামেরা ফোন", category: "mobiles" },
+    
+    { id: 5, name: "MacBook Pro M3", price: 189999, oldPrice: 209999, image: "https://images.pexels.com/photos/18105/pexels-photo.jpg?auto=compress&w=400", desc: "M3 চিপ, 18GB র্যাম", category: "laptops" },
+    { id: 6, name: "Dell XPS 15", price: 169999, oldPrice: 189999, image: "https://images.pexels.com/photos/7970309/pexels-photo-7970309.jpeg?auto=compress&w=400", desc: "OLED ডিসপ্লে, RTX 4060", category: "laptops" },
+    { id: 7, name: "ASUS ROG Strix", price: 179999, oldPrice: 199999, image: "https://images.pexels.com/photos/7970309/pexels-photo-7970309.jpeg?auto=compress&w=400", desc: "গেমিং ল্যাপটপ", category: "laptops" },
+    { id: 8, name: "HP Spectre x360", price: 134999, oldPrice: 154999, image: "https://images.pexels.com/photos/7970309/pexels-photo-7970309.jpeg?auto=compress&w=400", desc: "২-ইন-১ ল্যাপটপ", category: "laptops" },
+    
+    { id: 9, name: "Nike Air Max", price: 12999, oldPrice: 16999, image: "https://images.pexels.com/photos/2529148/pexels-photo-2529148.jpeg?auto=compress&w=400", desc: "প্রিমিয়াম স্নিকার্স", category: "footwear" },
+    { id: 10, name: "Adidas Ultraboost", price: 14999, oldPrice: 18999, image: "https://images.pexels.com/photos/2529148/pexels-photo-2529148.jpeg?auto=compress&w=400", desc: "কমফর্টেবল রানিং শু", category: "footwear" },
+    
+    { id: 11, name: "Premium Leather Jacket", price: 8999, oldPrice: 12999, image: "https://images.pexels.com/photos/7679742/pexels-photo-7679742.jpeg?auto=compress&w=400", desc: "পুরুষদের লেদার জ্যাকেট", category: "fashion" },
+    { id: 12, name: "Designer Hoodie", price: 3499, oldPrice: 5999, image: "https://images.pexels.com/photos/9958088/pexels-photo-9958088.jpeg?auto=compress&w=400", desc: "কটন হুডি", category: "fashion" },
+    
+    { id: 13, name: "Sony WH-1000XM5", price: 34999, oldPrice: 44999, image: "https://images.pexels.com/photos/3394650/pexels-photo-3394650.jpeg?auto=compress&w=400", desc: "নয়েজ ক্যান্সলিং হেডফোন", category: "gadgets" },
+    { id: 14, name: "Apple AirPods Pro 2", price: 23999, oldPrice: 28999, image: "https://images.pexels.com/photos/3394650/pexels-photo-3394650.jpeg?auto=compress&w=400", desc: "একটিভ নয়েজ ক্যান্সলিং", category: "gadgets" },
+    { id: 15, name: "Samsung Galaxy Watch 6", price: 31999, oldPrice: 39999, image: "https://images.pexels.com/photos/437037/pexels-photo-437037.jpeg?auto=compress&w=400", desc: "স্মার্ট ওয়াচ", category: "gadgets" },
+    { id: 16, name: "Xiaomi Smart Band 8", price: 3499, oldPrice: 4999, image: "https://images.pexels.com/photos/437037/pexels-photo-437037.jpeg?auto=compress&w=400", desc: "ফিটনেস ট্র্যাকার", category: "gadgets" }
 ];
+
 let cart = [];
 let currentUser = null;
-let currentView = "home";
+let currentSlide = 0;
+let slideInterval;
 
 // DOM Elements
-const productsGrid = document.getElementById('productsGrid');
-const cartCountSpan = document.getElementById('cartCountBadge');
-const cartSidebar = document.getElementById('cartSidebar');
-const toastMsg = document.getElementById('toastMsg');
-const searchInput = document.getElementById('searchInput');
-const userDisplay = document.getElementById('userNameDisplay');
-const loginModal = document.getElementById('loginModal');
-const adminPanelDiv = document.getElementById('adminPanel');
-const homePageDiv = document.getElementById('homePage');
-const singlePageDiv = document.getElementById('singleProductPage');
+function showToast(msg) {
+    let toast = document.getElementById('toast');
+    toast.innerText = msg;
+    toast.classList.add('show');
+    setTimeout(() => toast.classList.remove('show'), 2000);
+}
 
-function showToast(text) { toastMsg.innerText = text; toastMsg.classList.add('show'); setTimeout(()=>toastMsg.classList.remove('show'),2000);}
-function updateCartUI() { cartCountSpan.innerText = cart.reduce((s, i) => s + i.qty, 0); renderCartSidebar(); }
-function addToCart(product) { let exist = cart.find(i=>i.id===product.id); if(exist) exist.qty++; else cart.push({...product, qty:1}); updateCartUI(); showToast(`${product.name} কার্টে যোগ হয়েছে`); }
-function renderCartSidebar() { let total=0, html=''; cart.forEach(item=>{ total+=item.price*item.qty; html+=`<div class="cart-item"><img src="${item.image}" width="60"><div>${item.name}<br>৳${item.price} x${item.qty}</div><button onclick="removeFromCart(${item.id})">🗑️</button></div>`;}); document.getElementById('cartItemsList').innerHTML=html||'<div class="empty-cart-msg">কার্ট খালি</div>'; document.getElementById('cartTotalPrice').innerText=`৳${total}`; }
-window.removeFromCart = (id)=>{ cart=cart.filter(i=>i.id!==id); updateCartUI(); showToast('সরানো হয়েছে'); };
-function renderProducts(filter=""){ let filtered = products.filter(p=>p.name.toLowerCase().includes(filter.toLowerCase()) || p.category.includes(filter)); productsGrid.innerHTML = filtered.map(p=>`<div class="product-card" onclick="openSingleProduct(${p.id})"><img class="product-img" src="${p.image}"><div class="product-info"><div class="product-title">${p.name}</div><div class="price-row"><span class="disc-price">৳${p.price}</span><span class="old-price">৳${p.oldPrice}</span></div><button class="add-to-cart" onclick="event.stopPropagation(); addToCart(${JSON.stringify(p).replace(/"/g, '&quot;')})"><i class="fas fa-cart-plus"></i> কিনুন</button><button class="buy-now-btn" onclick="event.stopPropagation(); addToCart(${JSON.stringify(p).replace(/"/g, '&quot;')}); openCartSidebar();">অর্ডার করুন</button></div></div>`).join(''); }
-window.openSingleProduct = (id)=>{ let p = products.find(pr=>pr.id===id); if(p){ homePageDiv.style.display='none'; adminPanelDiv.style.display='none'; singlePageDiv.style.display='block'; singlePageDiv.innerHTML=`<div class="single-product-wrapper"><div class="single-img"><img src="${p.image}" alt=""></div><div class="single-details"><h1>${p.name}</h1><p class="premium-price">৳${p.price} <del>৳${p.oldPrice}</del></p><p><i class="fas fa-tag"></i> স্টক: প্রিমিয়াম কোয়ালিটি</p><p>📝 বিবরণ: ${p.desc || 'আসল পণ্য, ফ্রি ডেলিভারি'}</p><button class="buy-now-btn" onclick="addToCart(${JSON.stringify(p).replace(/"/g, '&quot;')}); openCartSidebar();">এখনই কিনুন 🚀</button><button class="add-to-cart" onclick="addToCart(${JSON.stringify(p).replace(/"/g, '&quot;')});">কার্টে যোগ করুন</button><br><button id="backHomeBtn">← হোমে ফিরুন</button></div></div>`; document.getElementById('backHomeBtn')?.addEventListener('click',()=>{ homePageDiv.style.display='block'; singlePageDiv.style.display='none'; }); } };
-function openCartSidebar(){ cartSidebar.classList.add('open'); document.getElementById('cartOverlay').classList.add('active'); }
-// Categories Filter
-const categoriesList = ["mobiles","laptops","fashion","gadgets","footwear"];
-function renderCategories(){ document.getElementById('categoriesGrid').innerHTML = categoriesList.map(cat=>`<div class="category-card" data-cat="${cat}"><i class="fas ${cat==='mobiles'?'fa-mobile-alt':cat==='laptops'?'fa-laptop-code':cat==='fashion'?'fa-tshirt':'fa-headphones'}"></i><span>${cat.toUpperCase()}</span></div>`).join(''); document.querySelectorAll('.category-card').forEach(c=>c.addEventListener('click',(e)=>{ let cat = c.dataset.cat; let filtered = products.filter(p=>p.category===cat); productsGrid.innerHTML = filtered.map(p=>`...`).join(''); renderProductsCustom(filtered); })); }
-function renderProductsCustom(arr){ productsGrid.innerHTML = arr.map(p=>`<div class="product-card" onclick="openSingleProduct(${p.id})">...<button class="add-to-cart" onclick="event.stopPropagation(); addToCart(${JSON.stringify(p).replace(/"/g, '&quot;')})">কার্টে নিন</button></div>`).join(''); }
-// Admin Panel
-function renderAdminProducts(){ let listDiv=document.getElementById('adminProductsList'); listDiv.innerHTML=products.map(p=>`<div class="admin-item"><span><strong>${p.name}</strong> ৳${p.price}</span><div><button onclick="editProduct(${p.id})">✏️</button><button onclick="deleteProduct(${p.id})">🗑️</button></div></div>`).join(''); document.getElementById('totalProductsStat').innerText=products.length; }
-window.deleteProduct=(id)=>{ products=products.filter(p=>p.id!==id); renderAdminProducts(); renderProducts(searchInput.value); showToast('পণ্য ডিলিট হয়েছে'); };
-window.editProduct=(id)=>{ let p=products.find(x=>x.id===id); let newName=prompt('নতুন নাম',p.name); if(newName) p.name=newName; let newPrice=prompt('নতুন দাম',p.price); if(newPrice) p.price=Number(newPrice); renderAdminProducts(); renderProducts(searchInput.value); showToast('আপডেট করা হয়েছে'); };
-document.getElementById('addProductBtn')?.addEventListener('click',()=>{ let newId=Date.now(); let newProd={ id:newId, name:document.getElementById('prodName').value, price:Number(document.getElementById('prodPrice').value), oldPrice:Number(document.getElementById('prodOldPrice').value), image:document.getElementById('prodImage').value, desc:document.getElementById('prodDesc').value, category:document.getElementById('prodCategory').value }; if(newProd.name && newProd.price){ products.push(newProd); renderAdminProducts(); renderProducts(searchInput.value); showToast('নতুন পণ্য যুক্ত!'); } else showToast('সব ঘর পূরণ করুন'); });
-// Auth Logic
-document.getElementById('userIcon').addEventListener('click',()=>{ if(!currentUser) loginModal.style.display='flex'; else { currentUser=null; userDisplay.innerText='অ্যাকাউন্ট'; showToast('লগআউট করা হয়েছে'); renderProducts(searchInput.value);} });
-document.getElementById('doLoginBtn').onclick=()=>{ let u=document.getElementById('loginUsername').value; let p=document.getElementById('loginPassword').value; if(u==='admin' && p==='admin123'){ currentUser={username:'admin',role:'admin'}; userDisplay.innerText='অ্যাডমিন'; loginModal.style.display='none'; showToast('স্বাগতম অ্যাডমিন!'); } else if(u && p){ currentUser={username:u,role:'user'}; userDisplay.innerText=u; loginModal.style.display='none'; showToast(`হ্যালো ${u}`); } else showToast('ভুল তথ্য'); };
-document.getElementById('guestLoginBtn').onclick=()=>{ currentUser={username:'গেস্ট',role:'guest'}; userDisplay.innerText='গেস্ট'; loginModal.style.display='none'; showToast('অতিথি হিসেবে ঢুকছেন'); };
-document.querySelector('.close-modal').onclick=()=>loginModal.style.display='none';
-// Admin Panel Navigation + Routing
-document.querySelectorAll('.nav-link').forEach(link=>{ link.addEventListener('click',(e)=>{ let page=e.target.dataset.page; if(page==='admin'){ if(currentUser?.role==='admin'){ homePageDiv.style.display='none'; singlePageDiv.style.display='none'; adminPanelDiv.style.display='block'; renderAdminProducts(); } else showToast('শুধু অ্যাডমিন এই প্যানেল ব্যবহার করতে পারেন!'); } else if(page==='home'){ homePageDiv.style.display='block'; adminPanelDiv.style.display='none'; singlePageDiv.style.display='none'; renderProducts(searchInput.value); } }); });
-document.getElementById('closeAdminBtn')?.addEventListener('click',()=>{ homePageDiv.style.display='block'; adminPanelDiv.style.display='none'; renderProducts(searchInput.value); });
-// Search + Slider + Hamburger
-searchInput.addEventListener('keyup',()=>renderProducts(searchInput.value));
-document.getElementById('searchBtn').onclick=()=>renderProducts(searchInput.value);
-// Slider Logic
-let slideIndex=0; const slides=document.getElementById('slides'); const total=document.querySelectorAll('.slide').length;
-function updateSlider(){ slides.style.transform=`translateX(-${slideIndex*100}%)`; document.querySelectorAll('.dot').forEach((d,i)=>{ d.classList.toggle('active',i===slideIndex);});}
-document.getElementById('nextSlide').onclick=()=>{ slideIndex=(slideIndex+1)%total; updateSlider();}
-document.getElementById('prevSlide').onclick=()=>{ slideIndex=(slideIndex-1+total)%total; updateSlider();}
-setInterval(()=>{ slideIndex=(slideIndex+1)%total; updateSlider();},5000);
-// Initialize
-renderProducts(); renderCategories(); updateCartUI(); 
-document.getElementById('cartIconBtn').onclick=()=>cartSidebar.classList.add('open'); document.getElementById('closeCartSidebar').onclick=()=>cartSidebar.classList.remove('open'); document.getElementById('checkoutBtn').onclick=()=>{ alert('অর্ডার প্রক্রিয়াধীন। ধন্যবাদ!'); cart=[]; updateCartUI(); cartSidebar.classList.remove('open'); };
-// Mobile Menu
-document.getElementById('hamburgerMenu').onclick=()=>document.getElementById('mobileDrawer').classList.add('open');
-document.getElementById('closeDrawer').onclick=()=>document.getElementById('mobileDrawer').classList.remove('open');
+function updateCartBadge() {
+    let total = cart.reduce((sum, item) => sum + item.quantity, 0);
+    document.getElementById('cartCount').innerText = total;
+    renderCart();
+}
+
+function addToCart(product) {
+    let exist = cart.find(item => item.id === product.id);
+    if (exist) exist.quantity++;
+    else cart.push({ ...product, quantity: 1 });
+    updateCartBadge();
+    showToast(`${product.name} কার্টে যোগ হয়েছে ✅`);
+}
+
+function removeFromCart(id) {
+    cart = cart.filter(item => item.id !== id);
+    updateCartBadge();
+    renderCart();
+    showToast('পণ্য সরানো হয়েছে');
+}
+
+function renderCart() {
+    let cartDiv = document.getElementById('cartItems');
+    let total = 0;
+    if (cart.length === 0) {
+        cartDiv.innerHTML = '<div class="empty-cart">কার্ট খালি 🛒</div>';
+        document.getElementById('cartTotal').innerText = '0';
+        return;
+    }
+    let html = '';
+    cart.forEach(item => {
+        total += item.price * item.quantity;
+        html += `<div class="admin-item" style="margin:10px 0">
+            <div><strong>${item.name}</strong><br>৳${item.price} x ${item.quantity}</div>
+            <button onclick="removeFromCart(${item.id})" style="background:#f97316;border:none;padding:8px 15px;border-radius:20px;color:white;cursor:pointer">🗑️</button>
+        </div>`;
+    });
+    cartDiv.innerHTML = html;
+    document.getElementById('cartTotal').innerText = total;
+}
+
+function renderProducts(filter = '') {
+    let grid = document.getElementById('productsGrid');
+    let filtered = products.filter(p => p.name.toLowerCase().includes(filter.toLowerCase()) || p.category.includes(filter));
+    grid.innerHTML = filtered.map(p => `
+        <div class="product-card" onclick="openSingleProduct(${p.id})">
+            <img class="product-img" src="${p.image}" alt="${p.name}">
+            <div class="product-info">
+                <div class="product-title">${p.name}</div>
+                <div><span class="price-current">৳${p.price.toLocaleString()}</span> <span class="price-old">৳${p.oldPrice.toLocaleString()}</span></div>
+                <div class="btn-group">
+                    <button class="btn-cart" onclick="event.stopPropagation(); addToCart(${JSON.stringify(p).replace(/"/g, '&quot;')})"><i class="fas fa-cart-plus"></i> কার্ট</button>
+                    <button class="btn-buy" onclick="event.stopPropagation(); addToCart(${JSON.stringify(p).replace(/"/g, '&quot;')}); document.getElementById('cartBtn').click();">কিনুন</button>
+                </div>
+            </div>
+        </div>
+    `).join('');
+}
+
+function renderCategories() {
+    let cats = ['mobiles', 'laptops', 'fashion', 'gadgets', 'footwear'];
+    let catNames = { mobiles: '📱 মোবাইল', laptops: '💻 ল্যাপটপ', fashion: '👕 ফ্যাশন', gadgets: '🎧 গ্যাজেট', footwear: '👟 ফুটওয়্যার' };
+    let grid = document.getElementById('categoriesGrid');
+    grid.innerHTML = cats.map(cat => `
+        <div class="category-card" onclick="filterByCategory('${cat}')">
+            <i class="fas ${cat === 'mobiles' ? 'fa-mobile-alt' : cat === 'laptops' ? 'fa-laptop-code' : cat === 'fashion' ? 'fa-tshirt' : cat === 'gadgets' ? 'fa-headphones' : 'fa-shoe-prints'}"></i>
+            <span>${catNames[cat]}</span>
+        </div>
+    `).join('');
+}
+
+window.filterByCategory = function(cat) {
+    let filtered = products.filter(p => p.category === cat);
+    let grid = document.getElementById('productsGrid');
+    grid.innerHTML = filtered.map(p => `
+        <div class="product-card" onclick="openSingleProduct(${p.id})">
+            <img class="product-img" src="${p.image}"><div class="product-info"><div class="product-title">${p.name}</div><div><span class="price-current">৳${p.price}</span> <span class="price-old">৳${p.oldPrice}</span></div><div class="btn-group"><button class="btn-cart" onclick="event.stopPropagation(); addToCart(${JSON.stringify(p).replace(/"/g, '&quot;')})">কার্ট</button><button class="btn-buy" onclick="event.stopPropagation(); addToCart(${JSON.stringify(p).replace(/"/g, '&quot;')}); document.getElementById('cartBtn').click();">কিনুন</button></div></div></div>
+    `).join('');
+};
+
+window.openSingleProduct = function(id) {
+    let p = products.find(pr => pr.id === id);
+    if (p) {
+        document.getElementById('homePage').style.display = 'none';
+        document.getElementById('adminPage').style.display = 'none';
+        let singleDiv = document.getElementById('singlePage');
+        singleDiv.style.display = 'block';
+        singleDiv.innerHTML = `
+            <div class="single-container">
+                <div class="single-img"><img src="${p.image}" alt="${p.name}"></div>
+                <div><h1>${p.name}</h1><p class="single-price">৳${p.price.toLocaleString()} <del>৳${p.oldPrice.toLocaleString()}</del></p><p><strong>বিবরণ:</strong> ${p.desc || 'প্রিমিয়াম কোয়ালিটি পণ্য'}</p><div class="btn-group" style="margin-top:30px"><button class="btn-cart" onclick="addToCart(${JSON.stringify(p).replace(/"/g, '&quot;')})">কার্টে যোগ দিন</button><button class="btn-buy" onclick="addToCart(${JSON.stringify(p).replace(/"/g, '&quot;')}); document.getElementById('cartBtn').click();">এখনই কিনুন</button></div><button onclick="backToHome()" style="margin-top:20px;background:#e2e8f0
