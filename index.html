@@ -3,45 +3,58 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Uphormart | Best E-commerce Shop</title>
+    <title>Uphormart | Daraz Style E-commerce</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
 
+    <div class="top-nav">
+        <p>Welcome to Uphormart! Free Shipping on orders over $50</p>
+    </div>
+
     <header>
         <nav class="navbar">
             <div class="logo">UPHOR<span>MART</span></div>
-            <ul class="nav-links">
-                <li><a href="#">Home</a></li>
-                <li><a href="#">Shop</a></li>
-                <li><a href="#">Categories</a></li>
-                <li><a href="#">Contact</a></li>
-            </ul>
+            <div class="search-bar">
+                <input type="text" placeholder="Search in Uphormart...">
+                <button><i class="fas fa-search"></i></button>
+            </div>
             <div class="nav-icons">
-                <i class="fas fa-search"></i>
-                <i class="fas fa-shopping-cart"></i>
-                <i class="fas fa-user"></i>
+                <div class="icon-item"><i class="fas fa-user"></i><span>Login</span></div>
+                <div class="icon-item"><i class="fas fa-shopping-cart"></i><span class="cart-count">0</span></div>
             </div>
         </nav>
     </header>
 
-    <section class="hero">
-        <div class="hero-content">
-            <h1>Premium Quality Products</h1>
-            <p>Shop the latest gadgets and accessories at Uphormart.</p>
-            <a href="#" class="btn">Shop Now</a>
+    <section class="banner">
+        <div class="slider">
+            <img src="https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?auto=format&fit=crop&w=1350&q=80" alt="Flash Sale">
+        </div>
+    </section>
+
+    <section class="categories">
+        <h3>Categories</h3>
+        <div class="cat-grid">
+            <div class="cat-item"><i class="fas fa-mobile-alt"></i><p>Gadgets</p></div>
+            <div class="cat-item"><i class="fas fa-laptop"></i><p>Laptops</p></div>
+            <div class="cat-item"><i class="fas fa-tshirt"></i><p>Fashion</p></div>
+            <div class="cat-item"><i class="fas fa-home"></i><p>Home</p></div>
+            <div class="cat-item"><i class="fas fa-headphones"></i><p>Audio</p></div>
         </div>
     </section>
 
     <section class="products">
-        <h2>Featured Products</h2>
+        <div class="section-header">
+            <h3>Flash Sale</h3>
+            <a href="#" class="view-all">View All</a>
+        </div>
         <div class="product-grid" id="product-grid">
             </div>
     </section>
 
     <footer>
-        <p>&copy; 2026 Uphormart - Developed by RK Nayem</p>
+        <p>&copy; 2026 Uphormart | Developed by RK Nayem</p>
     </footer>
 
     <script src="script.js"></script>
