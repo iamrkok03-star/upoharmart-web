@@ -1,147 +1,125 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="bn">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-  <title>uphormart · premium digital bazaar</title>
-  <!-- Font Awesome 6 (free icons) -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-  <!-- Google Fonts: Inter + Poppins for modern look -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>uphormart - প্রিমিয়াম ডিজিটাল বাজার</title>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <!-- AOS Animation Library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 </head>
 <body>
+    <div id="app">
+        <!-- HEADER -->
+        <header class="sticky-header">
+            <div class="header-container">
+                <div class="logo-area" data-aos="fade-right">
+                    <a href="#" class="brand">uphormart</a>
+                    <span class="badge-premium"><i class="fas fa-crown"></i> premium</span>
+                </div>
+                <div class="search-wrapper">
+                    <input type="text" id="searchInput" placeholder="🔍 অনুসন্ধান করুন পণ্য, ব্র্যান্ড..." autocomplete="off">
+                    <button id="searchBtn"><i class="fas fa-search"></i></button>
+                </div>
+                <div class="header-actions">
+                    <div class="user-icon" id="userIcon">
+                        <i class="fas fa-user-circle"></i>
+                        <span id="userNameDisplay">অ্যাকাউন্ট</span>
+                    </div>
+                    <div class="cart-icon-wrapper" id="cartIconBtn">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span class="cart-count" id="cartCountBadge">0</span>
+                    </div>
+                    <div class="hamburger" id="hamburgerMenu"><i class="fas fa-bars"></i></div>
+                </div>
+            </div>
+            <div class="mobile-search-bar">
+                <input type="text" id="mobileSearchInput" placeholder="সার্চ করুন...">
+                <button id="mobileSearchBtn"><i class="fas fa-search"></i></button>
+            </div>
+        </header>
 
-  <!-- STICKY HEADER / NAVBAR -->
-  <header class="sticky-header">
-    <div class="header-container">
-      <!-- Logo / brand -->
-      <div class="logo-area">
-        <a href="#" class="brand">uphormart</a>
-        <span class="tagline-mobile">| premium</span>
-      </div>
-
-      <!-- Search bar (desktop + tablet) -->
-      <div class="search-wrapper">
-        <input type="text" id="searchInput" class="search-input" placeholder="Search for products, brands & more..." autocomplete="off">
-        <button id="searchBtn" class="search-btn"><i class="fas fa-search"></i></button>
-      </div>
-
-      <!-- Right icons: user + cart -->
-      <div class="header-actions">
-        <div class="user-icon" id="userIcon">
-          <i class="far fa-user-circle"></i>
-          <span class="user-text">Account</span>
+        <!-- Mobile Drawer -->
+        <div class="mobile-drawer" id="mobileDrawer">
+            <div class="drawer-header"><span>uphormart</span><i class="fas fa-times" id="closeDrawer"></i></div>
+            <ul class="drawer-nav">
+                <li><a href="#" class="nav-link" data-page="home">হোম</a></li>
+                <li><a href="#" class="nav-link" data-page="categories">ক্যাটাগরি</a></li>
+                <li><a href="#" class="nav-link" data-page="admin">📊 অ্যাডমিন প্যানেল</a></li>
+                <li><a href="#" id="logoutBtnMobile">🚪 লগআউট</a></li>
+            </ul>
         </div>
-        <div class="cart-icon-wrapper" id="cartIconBtn">
-          <i class="fas fa-shopping-cart"></i>
-          <span class="cart-count" id="cartCountBadge">0</span>
-        </div>
-        <!-- mobile hamburger -->
-        <div class="hamburger" id="hamburgerMenu">
-          <i class="fas fa-bars"></i>
-        </div>
-      </div>
-    </div>
-    <!-- mobile search (extra row) -->
-    <div class="mobile-search-bar">
-      <input type="text" id="mobileSearchInput" class="search-input-mobile" placeholder="Search products...">
-      <button id="mobileSearchBtn" class="search-btn-mobile"><i class="fas fa-search"></i></button>
-    </div>
-  </header>
+        <div class="drawer-overlay" id="drawerOverlay"></div>
 
-  <!-- mobile drawer menu (hamburger) -->
-  <div class="mobile-drawer" id="mobileDrawer">
-    <div class="drawer-header">
-      <span>uphormart</span>
-      <i class="fas fa-times" id="closeDrawer"></i>
-    </div>
-    <ul class="drawer-nav">
-      <li><a href="#hero">Home</a></li>
-      <li><a href="#categories">Categories</a></li>
-      <li><a href="#products">Flash Deals</a></li>
-      <li><a href="#">Help Center</a></li>
-    </ul>
-  </div>
-  <div class="drawer-overlay" id="drawerOverlay"></div>
+        <!-- Main Content -->
+        <main id="mainContent">
+            <!-- HOME PAGE (default) -->
+            <div id="homePage">
+                <!-- Hero Slider -->
+                <section class="hero-section" data-aos="fade-up">
+                    <div class="slider-container">
+                        <div class="slides" id="slides">
+                            <div class="slide"><img src="https://images.pexels.com/photos/90946/pexels-photo-90946.jpeg?auto=compress" alt="tech sale"></div>
+                            <div class="slide"><img src="https://images.pexels.com/photos/5632402/pexels-photo-5632402.jpeg?auto=compress" alt="fashion"></div>
+                            <div class="slide"><img src="https://images.pexels.com/photos/4042800/pexels-photo-4042800.jpeg?auto=compress" alt="gadgets"></div>
+                        </div>
+                        <button class="slider-btn prev" id="prevSlide"><i class="fas fa-chevron-left"></i></button>
+                        <button class="slider-btn next" id="nextSlide"><i class="fas fa-chevron-right"></i></button>
+                        <div class="dots" id="dotsContainer"></div>
+                    </div>
+                </section>
 
-  <!-- AUTO-PLAYING SLIDER (HERO SECTION) -->
-  <section id="hero" class="hero-section">
-    <div class="slider-container">
-      <div class="slides" id="slides">
-        <div class="slide"><img src="https://images.pexels.com/photos/90946/pexels-photo-90946.jpeg?auto=compress&cs=tinysrgb&w=1600" alt="tech sale"></div>
-        <div class="slide"><img src="https://images.pexels.com/photos/5632402/pexels-photo-5632402.jpeg?auto=compress&cs=tinysrgb&w=1600" alt="fashion week"></div>
-        <div class="slide"><img src="https://images.pexels.com/photos/4042800/pexels-photo-4042800.jpeg?auto=compress&cs=tinysrgb&w=1600" alt="gadgets"></div>
-      </div>
-      <button class="slider-btn prev" id="prevSlide"><i class="fas fa-chevron-left"></i></button>
-      <button class="slider-btn next" id="nextSlide"><i class="fas fa-chevron-right"></i></button>
-      <div class="dots" id="dotsContainer"></div>
-    </div>
-  </section>
+                <!-- Categories Grid -->
+                <section class="categories-section" id="categoriesSection" data-aos="fade-up" data-aos-delay="100">
+                    <div class="container"><h2 class="section-title">📦 ক্যাটাগরি <span class="highlight">ব্রাউজ করুন</span></h2>
+                        <div class="categories-grid" id="categoriesGrid"></div>
+                    </div>
+                </section>
 
-  <!-- CATEGORIES GRID -->
-  <section id="categories" class="categories-section">
-    <div class="container">
-      <h2 class="section-title">Shop by Category</h2>
-      <div class="categories-grid">
-        <div class="category-card"><i class="fas fa-mobile-alt"></i><span>Mobiles</span></div>
-        <div class="category-card"><i class="fas fa-laptop-code"></i><span>Laptops</span></div>
-        <div class="category-card"><i class="fas fa-tshirt"></i><span>Fashion</span></div>
-        <div class="category-card"><i class="fas fa-headphones"></i><span>Gadgets</span></div>
-        <div class="category-card"><i class="fas fa-shoe-prints"></i><span>Footwear</span></div>
-        <div class="category-card"><i class="fas fa-home"></i><span>Home & Living</span></div>
-      </div>
-    </div>
-  </section>
+                <!-- Products Grid -->
+                <section class="products-section" data-aos="fade-up" data-aos-delay="200">
+                    <div class="container"><h2 class="section-title">🔥 হট ডিলস <span class="highlight">সরাসরি</span></h2>
+                        <div class="products-grid" id="productsGrid"></div>
+                    </div>
+                </section>
+            </div>
 
-  <!-- PRODUCT GRID SECTION -->
-  <section id="products" class="products-section">
-    <div class="container">
-      <h2 class="section-title">🔥 Hot Deals for You</h2>
-      <div class="products-grid" id="productsGrid"></div>
-    </div>
-  </section>
+            <!-- SINGLE PRODUCT PAGE (dynamic) -->
+            <div id="singleProductPage" style="display:none;"></div>
 
-  <!-- CART SIDEBAR (MODAL / SIDEBAR) -->
-  <div class="cart-sidebar" id="cartSidebar">
-    <div class="cart-sidebar-header">
-      <h3><i class="fas fa-shopping-bag"></i> Your Cart</h3>
-      <i class="fas fa-times" id="closeCartSidebar"></i>
-    </div>
-    <div class="cart-items-list" id="cartItemsList">
-      <div class="empty-cart-msg">Your cart is empty 🛍️</div>
-    </div>
-    <div class="cart-footer">
-      <div class="cart-total">Total: <span id="cartTotalPrice">$0.00</span></div>
-      <button class="checkout-btn" id="checkoutBtn">Checkout <i class="fas fa-arrow-right"></i></button>
-    </div>
-  </div>
-  <div class="cart-overlay" id="cartOverlay"></div>
+            <!-- ADMIN PANEL -->
+            <div id="adminPanel" style="display:none;" class="admin-container">
+                <div class="admin-header"><h1><i class="fas fa-shield-alt"></i> অ্যাডমিন কন্ট্রোল সেন্টার</h1><button id="closeAdminBtn" class="close-admin"><i class="fas fa-arrow-left"></i> হোমে ফিরুন</button></div>
+                <div class="admin-stats"><div class="stat-card"><i class="fas fa-boxes"></i><span id="totalProductsStat">0</span><p>মোট পণ্য</p></div></div>
+                <div class="admin-form"><h3>➕ নতুন পণ্য যুক্ত করুন</h3>
+                    <input type="text" id="prodName" placeholder="পণ্যের নাম" class="admin-input">
+                    <input type="number" id="prodPrice" placeholder="বর্তমান দাম (৳)" class="admin-input">
+                    <input type="number" id="prodOldPrice" placeholder="আসল দাম (৳)" class="admin-input">
+                    <input type="text" id="prodImage" placeholder="ছবির URL" class="admin-input">
+                    <textarea id="prodDesc" placeholder="পণ্যের বিস্তারিত বিবরণ..." rows="3" class="admin-input"></textarea>
+                    <select id="prodCategory" class="admin-input"><option value="mobiles">মোবাইল</option><option value="laptops">ল্যাপটপ</option><option value="fashion">ফ্যাশন</option><option value="gadgets">গ্যাজেট</option><option value="footwear">ফুটওয়্যার</option></select>
+                    <button id="addProductBtn" class="admin-btn"><i class="fas fa-plus"></i> পণ্য যোগ করুন</button>
+                </div>
+                <div class="admin-products-list"><h3>📋 পণ্য তালিকা (এডিট/ডিলিট)</h3><div id="adminProductsList"></div></div>
+            </div>
+        </main>
 
-  <!-- TOAST NOTIFICATION -->
-  <div id="toastMsg" class="toast-notification">Item added to cart ✨</div>
+        <!-- Cart Sidebar -->
+        <div class="cart-sidebar" id="cartSidebar"><div class="cart-sidebar-header"><h3><i class="fas fa-shopping-bag"></i> আপনার ব্যাগ</h3><i class="fas fa-times" id="closeCartSidebar"></i></div><div class="cart-items-list" id="cartItemsList"><div class="empty-cart-msg">কার্ট খালি</div></div><div class="cart-footer"><div class="cart-total">মোট: <span id="cartTotalPrice">৳0</span></div><button class="checkout-btn" id="checkoutBtn">অর্ডার করুন <i class="fas fa-arrow-right"></i></button></div></div>
+        <div class="cart-overlay" id="cartOverlay"></div>
+        <div id="toastMsg" class="toast-notification"></div>
 
-  <!-- PROFESSIONAL FOOTER -->
-  <footer class="footer">
-    <div class="footer-container">
-      <div class="footer-brand">
-        <h3>uphormart</h3>
-        <p>Your premium digital bazaar. Quality & speed.</p>
-      </div>
-      <div class="footer-links">
-        <h4>Support</h4>
-        <ul><li>Help Center</li><li>Returns</li><li>Careers</li></ul>
-      </div>
-      <div class="footer-links">
-        <h4>Policy</h4>
-        <ul><li>Privacy</li><li>Terms of Use</li></ul>
-      </div>
-    </div>
-    <div class="footer-bottom">
-      <p>© 2025 uphormart — Developed by Hamidul</p>
-    </div>
-  </footer>
+        <!-- Login Modal -->
+        <div id="loginModal" class="login-modal"><div class="modal-content"><span class="close-modal">&times;</span><h2><i class="fas fa-user-lock"></i> লগইন / সাইনআপ</h2><input type="text" id="loginUsername" placeholder="ইউজারনেম"><input type="password" id="loginPassword" placeholder="পাসওয়ার্ড"><button id="doLoginBtn">লগইন করুন</button><p>ডেমো: username: "admin" , password: "admin123"</p><button id="guestLoginBtn">অতিথি হিসাবে চালিয়ে যান</button></div></div>
 
-  <script src="script.js"></script>
+        <footer class="footer"><div class="footer-container"><div class="footer-brand"><h3>uphormart</h3><p>প্রিমিয়াম ডিজিটাল বাজার</p></div><div class="footer-links"><h4>সাপোর্ট</h4><ul><li>হেল্প সেন্টার</li><li>রিটার্ন পলিসি</li></ul></div></div><div class="footer-bottom"><p>© 2025 uphormart — ডেভেলপড by Hamidul</p></div></footer>
+    </div>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
